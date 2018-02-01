@@ -1,0 +1,42 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <!-- Static CSS -->
+    <link rel="stylesheet" href="{% static 'films/style.css' %}">
+
+    <title>{% block title %}Вочлист{% endblock %}</title>
+</head>
+
+<body>
+
+
+
+<div class="container">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-warning" >
+      <a class="navbar-brand" href="{% url 'films:index' %}">Вочлист</a>
+        <div class="navbar-collapse">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link" href="{% url 'films:to_watch' %}">Хочу посмотреть</a>
+            <a class="nav-item nav-link" href="{% url 'films:completed' %}">Просмотренное</a>
+          </div>
+        </div>
+        <form class="form-inline" action="{% url 'films:search' %}" method="get">
+          <input class="form-control mr-sm-2" type="search" name="q" placeholder="Введите название фильма" value="{{ q }}">
+          <button class="btn btn-light" type="submit">Поиск</button>
+        </form>
+    </nav>
+
+    {% block body %}
+    {% endblock %}
+</div>
+
+</body>
+
+</html>

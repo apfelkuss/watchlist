@@ -1,0 +1,101 @@
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+    background-color: #222;
+}
+
+.container {
+  padding: 0;
+  width: 980px;
+  min-height: 100vh;
+  background-color: #fefefe;
+}
+
+.block-wrap {
+  padding: 0 3em;
+}
+
+.block {
+  padding-top: 1em;
+  padding-bottom: 2em;
+}
+
+.block-header {
+  margin: 0 auto;
+  padding-top: 1em;
+}
+
+.block-plot {
+  padding-left: 1.5em;
+}
+
+.card-body {
+    padding: 0px;
+}
+
+.card-title {
+    padding-top: 0.5em;
+    font-size: 1em;
+}
+
+.card-subtitle {
+    font-size: 1em;
+}
+
+.card {
+    padding: 0;
+    margin: 0;
+    background-color: rgb(0, 0, 0, 0);
+    border: 0;
+    height: 350px;
+}
+
+.card-deck {
+  padding: 0;
+}
+
+.card-img-top {
+  height: 250px;
+  width: auto;
+}
+
+.action {
+  display: inline-block;
+}
+
+.action-icon {
+  width:24px;
+  height:24px;
+}
+
+.icon-left {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.icon-right {
+  position: absolute;
+  top: 10px;
+  left: 40px;
+}
+
+th {
+  vertical-align: top;
+}
+
+td {
+  padding-left: 1em;
+}
+
+/* placeholder text inside search bar */
+::-moz-placeholder {
+  font-size: .9em;
+  font-style: italic;
+}

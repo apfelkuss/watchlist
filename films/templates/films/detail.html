@@ -1,0 +1,116 @@
+{% extends "films/base.html" %}
+{% load staticfiles %}
+
+{% block title %}{{ film }} &mdash; Вочлист{% endblock %}
+
+
+{% block body %}
+
+<div class="block-wrap">
+  <div class="block-header">
+    <h1>{{ film.title }}</h1>
+    <p>{{ film.title_original }}</p>
+  </div>
+
+  <div class="actions-block">
+    <!-- изменить статус на просмотренное -->
+    <div class="action">
+      {% if film.status == "to_watch" %}
+      <form action="{% url 'films:mark_as_completed' film.id %}" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="film_id" value="{{ film.id }}">
+          <input class="action-icon" type="image" src="{% static 'films/images/task.svg' %}" title="Отметить как просмотренное"></input>
+      </form>
+      {% endif %}
+    </div>
+
+    <!-- удалить -->
+    <div class="action">
+    <form action="{% url 'films:delete' film.id %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="film_id" value="{{ film.id }}">
+        <input class="action-icon" type="image" src="{% static 'films/images/trash.svg' %}" title="Удалить"</input>
+    </form>
+    </div>
+  </div>
+
+  <div class="block">
+    <div style="display: flex; justify-content: space-between;">
+      <div class="block-poster">
+        <img src="{{ film.poster }}">
+      </div>
+      <div class="block-plot">
+          {{ film.plot }}
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div>
+      <table>
+        <tr>
+          <th>
+            Год:
+          </th>
+          <td>
+            {{ film.year }}
+          </td>
+        </tr>
+        <tr>
+          <th>
+            Страна:
+          </th>
+          <td>
+            {{ film.country }}
+          </td>
+        </tr>
+        <tr>
+          <th>
+            Жанр:
+          </th>
+          <td>
+            {{ film.genre }}
+          </td>
+        </tr>
+        <tr>
+          <th>
+            В главных ролях:
+          </th>
+          <td>
+            {{ film.actors }}
+          </td>
+        </tr>
+        <tr>
+          <th>
+            Режиссер:
+          </th>
+          <td>
+            {{ film.director }}
+          </td>
+        </tr>
+        <tr>
+          <th>
+            Сценарий:
+          </th>
+          <td>
+            {{ film.scriptwriter }}
+          </td>
+        </tr>
+        <tr>
+          <th>
+            Продолжительность:
+          </th>
+          <td>
+            {{ film.length }} минут
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+{% if error_message %}
+    <p><strong>{{ error_message }}</strong></p>
+{% endif %}
+
+{% endblock %}

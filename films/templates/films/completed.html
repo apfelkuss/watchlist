@@ -1,0 +1,29 @@
+{% extends "films/base.html" %}
+
+{% block body %}
+<div class="block-wrap">
+  <div class="block-header">
+    <h1>Просмотренное</h1>
+  </div>
+  <div class="block">
+  {% if completed_films %}
+    <div class="card-deck">
+    {% for film in completed_films %}
+      <div class="col-md-3 col-xs-6">
+        <div class="card">
+          <a href="{% url 'films:detail' film.id %}">
+            <img class="card-img-top" src="{{ film.poster }}" alt="{{ film.title }}">
+          </a>
+          <div class="card-block">
+            <h2 class="card-title">{{ film.title }} ({{ film.year }})</h2>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+    {% else %}
+      <p><em>Вы пока не добавили ни одного фильма.</em></p>
+  {% endif %}
+  </div>
+</div>
+{% endblock %}

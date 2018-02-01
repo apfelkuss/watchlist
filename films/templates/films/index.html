@@ -1,0 +1,61 @@
+{% extends "films/base.html" %}
+
+{% block body %}
+
+<!-- начало блока "хочу посмотреть" -->
+<div class="block-wrap">
+  <div class="block-header">
+    <h1>Хочу посмотреть</h1>
+  </div>
+  <div class="block">
+  {% if to_watch_films %}
+    <div class="card-deck">
+    {% for film in to_watch_films %}
+      <div class="col-md-3 col-xs-6">
+        <div class="card">
+          <a href="{% url 'films:detail' film.id %}">
+            <img class="card-img-top" src="{{ film.poster }}" alt="{{ film.title }}">
+          </a>
+          <div class="card-block">
+            <h3 class="card-title">{{ film.title }} ({{ film.year }})</h3>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+    {% else %}
+      <p><em>Вы пока не добавили ни одного фильма.</em></p>
+  {% endif %}
+  </div>
+</div>
+<!-- конец блока "хочу посмотреть" -->
+
+<!-- начало блока "просмотренное" -->
+<div class="block-wrap">
+  <div class="block-header">
+    <h1>Просмотренное</h1>
+  </div>
+  <div class="block">
+  {% if completed_films %}
+    <div class="card-deck">
+    {% for film in completed_films %}
+      <div class="col-md-3 col-xs-6">
+        <div class="card">
+          <a href="{% url 'films:detail' film.id %}">
+            <img class="card-img-top" src="{{ film.poster }}" alt="{{ film.title }}">
+          </a>
+          <div class="card-block">
+            <h3 class="card-title">{{ film.title }} ({{ film.year }})</h3>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+    {% else %}
+      <p><em>Вы пока не добавили ни одного фильма.</em></p>
+  {% endif %}
+  </div>
+</div>
+<!-- конец блока "просмотренное" -->
+
+{% endblock %}
